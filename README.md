@@ -4,3 +4,5 @@
 # Solutions
 
 * [Day 1, Calorie Counting :fire: :burrito: :chocolate_bar:](day1-calorie-counting)
+* [Day 2, Calorie Counting :fire: :burrito: :chocolate_bar:](day2-rock-paper-scissors)
+* [Day 3, Calorie Counting :fire: :burrito: :chocolate_bar:](day3-rucksack-reorganization)
