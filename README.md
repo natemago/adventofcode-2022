@@ -13,3 +13,4 @@
 * [Day 8, Tree-Top Tree-house :evergreen_tree: :house: :deciduous_tree:](day8-tree-top-treehouse)
 * [Day 9, Rope Bridge :thread: :bridge_at_night: :cheese:](day9-rope-bridge)
 * [Day 10, CRT :tv: :computer: :printer:](day10-cathode-ray-tube)
+* [Day 11, Monkey in the Middle :monkey: :speak_no_evil: :monkey:](day11-monkey-in-the-middle)
