@@ -12,3 +12,4 @@
 * [Day 7, No Space Left On Device :floppy_disk: :computer: :recycle:](day7-no-space-left-on-device)
 * [Day 8, Tree-Top Tree-house :evergreen_tree: :house: :deciduous_tree:](day8-tree-top-treehouse)
 * [Day 9, Rope Bridge :thread: :bridge_at_night: :cheese:](day9-rope-bridge)
+* [Day 10, CRT :tv: :computer: :printer:](day10-cathode-ray-tube)
