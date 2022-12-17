@@ -7,3 +7,4 @@
 * [Day 2, Rock-Paper-Scissors :scissors: :scroll: :sunrise_over_mountains:](day2-rock-paper-scissors)
 * [Day 3, Rucksack Reorganization :ledger: :pencil2: :moneybag:](day3-rucksack-reorganization)
 * [Day 4, Camp Cleanup :tent: :balloon: :bulb:](day4-camp-cleanup)
+* [Day 5, Camp Cleanup :tent: :balloon: :bulb:](day4-camp-cleanup)
