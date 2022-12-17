@@ -16,3 +16,4 @@
 * [Day 11, Monkey in the Middle :monkey: :speak_no_evil: :monkey:](day11-monkey-in-the-middle)
 * [Day 12, Hill Climbing Algorithm :mountain_snow: :volcano: :mountain:](day12-hill-climbing-algorithm)
 * [Day 13, Distress Signal :telephone: :satellite: :wave:](day13-distress-signal)
+* [Day 14, Regolith Reservoir :rock: :rock: :tent:](day14-regolith-reservoir)
