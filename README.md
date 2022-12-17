@@ -17,3 +17,5 @@
 * [Day 12, Hill Climbing Algorithm :mountain_snow: :volcano: :mountain:](day12-hill-climbing-algorithm)
 * [Day 13, Distress Signal :telephone: :satellite: :wave:](day13-distress-signal)
 * [Day 14, Regolith Reservoir :rock: :rock: :tent:](day14-regolith-reservoir)
+* [Day 15, Beacon Exclusion Zone :warning: :radioactive: :no_entry:](day15-beacon-exclusion-zone)
+ 
