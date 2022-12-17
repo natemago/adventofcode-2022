@@ -10,4 +10,5 @@
 * [Day 5, Supply Stacks :ladder: :lock: :star:](day5-supply-stacks)
 * [Day 6, Tuning Trouble :notes: :computer: :headphones:](day6-tuning-trouble)
 * [Day 7, No Space Left On Device :floppy_disk: :computer: :recycle:](day7-no-space-left-on-device)
+* [Day 8, Tree-Top Tree-house :evergreen_tree: :house: :deciduous_tree:](day8-tree-top-treehouse)
 
