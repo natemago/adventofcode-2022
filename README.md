@@ -18,4 +18,4 @@
 * [Day 13, Distress Signal :telephone: :satellite: :wave:](day13-distress-signal)
 * [Day 14, Regolith Reservoir :rock: :rock: :tent:](day14-regolith-reservoir)
 * [Day 15, Beacon Exclusion Zone :warning: :radioactive: :no_entry:](day15-beacon-exclusion-zone)
- 
+* [Day 16, PV :volcano: :hourglass: :alarm_clock:](day16-proboscidea-volcanium)
