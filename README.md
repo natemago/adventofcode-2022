@@ -15,3 +15,4 @@
 * [Day 10, CRT :tv: :computer: :printer:](day10-cathode-ray-tube)
 * [Day 11, Monkey in the Middle :monkey: :speak_no_evil: :monkey:](day11-monkey-in-the-middle)
 * [Day 12, Hill Climbing Algorithm :mountain_snow: :volcano: :mountain:](day12-hill-climbing-algorithm)
+* [Day 13, Distress Signal :telephone: :satellite: :wave:](day13-distress-signal)
