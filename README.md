@@ -21,3 +21,5 @@
 * [Day 16, PV :volcano: :hourglass: :alarm_clock:](day16-proboscidea-volcanium)
 * [Day 17, Pyroclastic Flow :volcano: ▅  ▌ ▙ ▟](day17-pyroclastic-flow)
 * [Day 18, Boiling Boulders :fire: :droplet: :rock: :volcano:](day18-boiling-boulders)
+* [Day 19 :construction:](day19-not-enough-minerals)
+* [Day 20, Grove Positioning System :computer: :satellite: :pager:](day20-grove-positioning-system)
