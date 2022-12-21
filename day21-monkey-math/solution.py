@@ -1,4 +1,5 @@
 import re
+from random import randint
 
 def read_input(inpf):
     with open(inpf) as f:
@@ -102,20 +103,30 @@ def part2(expressions):
         return (f(n+d) - f(n))/d
 
     # Newton's method
-    x0 = -100
-    epsilon = 0.5
     while True:
-        x1 = x0 - (f(x0)/derivative_at(x0, 10))
-        if abs(x1 - x0) <= epsilon:
-            # we got as solution
-            break
-        x0 = x1
-    x0 = int(x0)
-    # Try out a couple of values
-    for i in range(x0-5, x0+5):
-        if f(i) == 0:
-            # this is the exact solution
-            return i
+        x0 = randint(-10**12, 10**12) # Let's choose a random point in this large interval
+        print('Starting at:', x0)
+        epsilon = 0.5
+        iterations = 0
+        found_zero = False
+        while True:
+            x1 = x0 - (f(x0)/derivative_at(x0, 10))
+            if abs(x1 - x0) <= epsilon:
+                # we got as solution
+                found_zero = True
+                break
+            x0 = x1
+            if iterations > 1000:
+                # If we're not converging after 1000 iteration, try different random start
+                break
+        if not found_zero:
+            continue
+        x0 = int(x0)
+        # Try out a couple of values
+        for i in range(x0-5, x0+5):
+            if f(i) == 0:
+                # this is the exact solution
+                return i
         
 
 
