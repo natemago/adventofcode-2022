@@ -24,3 +24,4 @@
 * [Day 19 :construction:](day19-not-enough-minerals)
 * [Day 20, Grove Positioning System :computer: :satellite: :pager:](day20-grove-positioning-system)
 * [Day 21, Monkey Math :monkey: :monkey: :monkey:](day21-monkey-math)
+* [Day 22, Monkey Map :game_die: :game_die: :game_die: :monkey:](day22-monkey-map)
