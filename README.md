@@ -26,3 +26,4 @@
 * [Day 21, Monkey Math :monkey: :monkey: :monkey:](day21-monkey-math)
 * [Day 22, Monkey Map :game_die: :game_die: :game_die: :monkey:](day22-monkey-map)
 * [Day 23, Unstable Diffusion :elf: :elf: :santa: :elf:](day23-unstable-diffusion)
+* [Day 24, Blizzard Basin :mountain_snow: :tornado: :mountain: :tornado: :volcano:](day24-blizzard-basin)
