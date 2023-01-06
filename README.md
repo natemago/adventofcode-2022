@@ -21,7 +21,7 @@
 * [Day 16, PV :volcano: :hourglass: :alarm_clock:](day16-proboscidea-volcanium)
 * [Day 17, Pyroclastic Flow :volcano: ▅  ▌ ▙ ▟](day17-pyroclastic-flow)
 * [Day 18, Boiling Boulders :fire: :droplet: :rock: :volcano:](day18-boiling-boulders)
-* [Day 19 :construction:](day19-not-enough-minerals)
+* [Day 19, Not enough minerals :hammer_and_pick: :elf: :gem:](day19-not-enough-minerals)
 * [Day 20, Grove Positioning System :computer: :satellite: :pager:](day20-grove-positioning-system)
 * [Day 21, Monkey Math :monkey: :monkey: :monkey:](day21-monkey-math)
 * [Day 22, Monkey Map :game_die: :game_die: :game_die: :monkey:](day22-monkey-map)
