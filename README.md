@@ -1,5 +1,7 @@
 # adventofcode-2022
-:christmas_tree: :santa: Advent Of Code 2022 :seedling: :palm_tree: :star:
+:christmas_tree: :santa: [Advent Of Code 2022](https://adventofcode.com/2022) :seedling: :palm_tree: :star:
+
+![Advent Of Code 2022 Solved](advent-of-code-2022-solved.gif)
 
 # Solutions
 
