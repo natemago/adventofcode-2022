@@ -18,7 +18,7 @@
 * [Day 13, Distress Signal :telephone: :satellite: :wave:](day13-distress-signal)
 * [Day 14, Regolith Reservoir :rock: :rock: :tent:](day14-regolith-reservoir)
 * [Day 15, Beacon Exclusion Zone :warning: :radioactive: :no_entry:](day15-beacon-exclusion-zone)
-* [Day 16, PV :volcano: :hourglass: :alarm_clock:](day16-proboscidea-volcanium)
+* [Day 16, Proboscidea Volcanium :volcano: :hourglass: :alarm_clock:](day16-proboscidea-volcanium)
 * [Day 17, Pyroclastic Flow :volcano: ▅  ▌ ▙ ▟](day17-pyroclastic-flow)
 * [Day 18, Boiling Boulders :fire: :droplet: :rock: :volcano:](day18-boiling-boulders)
 * [Day 19, Not enough minerals :hammer_and_pick: :elf: :gem:](day19-not-enough-minerals)

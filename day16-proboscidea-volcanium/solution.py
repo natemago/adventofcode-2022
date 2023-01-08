@@ -1,4 +1,7 @@
 import re
+from functools import cache
+from collections import deque
+from itertools import combinations
 
 def read_input(inpf):
     with open(inpf) as f:
@@ -21,6 +24,11 @@ class V:
         self.rate = rate
         self.edges = []
     
+    def __str__(self):
+        return '{}_{}'.format(self.name, self.rate)
+    
+    def __repr__(self):
+        return self.__str__()
 
 class E:
 
@@ -44,41 +52,12 @@ class G:
     
     def add_edge(self, s, t, cost=1):
         key = (s, t)
-        edge = self.edges.get(key)
-        if edge:
-            if cost < edge.cost:
-                # remove this edge
-                self.remove_edge(edge)
-                edge = E(s, t, cost)
-            else:
-                # don't add it
-                return edge
-        else:
-            edge = E(s, t, cost)
-        
-        s.edges.append(edge)
-        self.edges[key] = edge
-        return edge
+        if key in self.edges:
+            raise Exception('Edge already exists {}->{}'.format(s, t))
+        e = E(s, t, cost)
+        self.edges[(s, t)] = e
+        s.edges.append(e)
 
-    def remove_edge(self, edge):
-        key = (edge.s, edge.t)
-        del self.edges[key]
-        edge.s.edges.remove(edge)
-    
-    def remove_vertex(self, v):
-        del self.vertices[v.name]
-        for e in v.edges:
-            self.remove_edge(e)
-        # find incoming
-        for e in self.get_incoming_edges(v):
-            self.remove_edge(e)
-    
-    def get_incoming_edges(self, v):
-        res = []
-        for _, e in self.edges.items():
-            if e.t == v:
-                res.append(e)
-        return res
     
     def to_dot(self):
         r = ['digraph {']
@@ -89,49 +68,177 @@ class G:
         r.append('}')
         return '\n'.join(r)
 
-def build_graph(graph):
+def to_graph(valves):
     g = G()
-
-    for valve, vd in graph.items():
-        v = V(valve, vd[0])
+    for valve, (rate, neighbours) in valves.items():
+        v = V(valve, rate)
         g.vertices[valve] = v
-
-    for valve, vd in graph.items():
-        _, valves = vd
-        s = g.vertex(valve)
-        for tv in valves:
-            t = g.vertex(tv)
-            g.add_edge(s, t)
-
+    for valve, (rate, neighbours) in valves.items():
+        v = g.vertex(valve)
+        for t in neighbours:
+            t = g.vertex(t)
+            g.add_edge(v, t)
     return g
 
+def get_neighbours(g, s):
+    result = []
 
-def simplify_graph(g):
-    remove_vertices = set()
-    for _, v in g.vertices.items():
-        if v.rate == 0 and v.name != 'AA':
-            remove_vertices.add(v)
+    seen = {s}
+    q = []
+    for e in s.edges:
+        q.append((e.t, 1))
     
-    for v in remove_vertices:
-        inc_edgs = g.get_incoming_edges(v)
-        out_edgs = [e for e in v.edges]
+    while q:
+        curr, cost = q[0]
+        q = q[1:]
+        if curr in seen:
+            continue
+        seen.add(curr)
+        if curr.rate > 0 or curr.name == 'AA':
+            result.append((curr, cost))
+            continue
+        for e in curr.edges:
+            q.append((e.t, cost+1))    
 
-        g.remove_vertex(v)
+    return result
 
-        for ie in inc_edgs:
-            s = ie.s
-            s_cost = ie.cost
-            for oe in out_edgs:
-                t = oe.t
-                o_cost = oe.cost
-                g.add_edge(s, t, s_cost + o_cost)
+def smaller_graph(g):
+    rg = G()
+    for valve, v in g.vertices.items():
+        if v.name == 'AA' or v.rate > 0:
+            vv = V(v.name, v.rate)
+            rg.vertices[vv.name] = vv
+    for _, v in rg.vertices.items():
+        for nv, cost in get_neighbours(g, g.vertex(v.name)):
+            rg.add_edge(v, rg.vertex(nv.name), cost)
+
+    return rg
+
+
+def find_best(curr, open_valves, time, total_to_open, path):
+    if time >= 30:
+        return 0
+    released = 0
+    results = []
+    if curr.rate > 0:
+        if curr not in open_valves:
+            open_released = (30 - time - 1) * curr.rate
+            if total_to_open - len(open_valves) <= 1:
+                results.append(open_released)
+
+            else:
+                for e in curr.edges:
+                    r = open_released + find_best(e.t, open_valves.union({curr}), time+2, total_to_open, path)
+                    results.append(r)
+    
+    for e in curr.edges:
+        r = released + find_best(e.t, open_valves, time+1, total_to_open, path)
+        results.append(r)
+    
+    return max(results) if results else 0
+
+def dijkstra(graph, start):
+    visited = set()
+    distance = {
+        start: 0
+    }
+
+    q = [start]
+
+    while q:
+        q.sort(key=lambda n: distance.get(n, 2**32))
+        node = q[0]
+        q = q[1:]
+
+        if node in visited:
+            continue
+        visited.add(node)
+
+        curr_cost = distance[node]
+        for e in node.edges:
+            v = e.t
+            vcost = curr_cost + e.cost
+            if vcost < distance.get(v, 2**32):
+                distance[v] = vcost
+            q.append(v)
+        
+    return distance
+
+
+def generate_distances_table(graph):
+    table = {}
+    for _, v in graph.vertices.items():
+        distances = dijkstra(graph, v)
+        table[v] = distances
+
+    return table
+
+def find_best(start, table):
+
+    @cache
+    def _best(time, curr_valve, open_valves):
+        if time >= 30:
+            return 0
+        pressure = (30-time) * curr_valve.rate
+        best = pressure
+        for v, cost in table[curr_valve].items():
+            if v in open_valves:
+                continue
+            curr_open = tuple(sorted(set(open_valves).union({v}), key=lambda n: n.name))
+            curr = _best(time + cost + 1, v, curr_open)
+            if curr + pressure > best:
+                best = curr + pressure
+        return best
+    
+    return _best(0, start, tuple())
+
+
+def find_best2(graph, start, table):
+
+    q = deque()
+    q.append((start, 0, 0, {start}))
+    released = {}
+
+    it = 0
+    while q:
+        it += 1
+        v, time, pressure, open_valves = q.popleft()
+        pressure += (26-time) * v.rate
+
+        open_valves = open_valves.union({v})
+        fz = frozenset(open_valves)
+        released[fz] = max(released.get(fz, 0), pressure)
+
+        for vv, cost in table[v].items():
+            if vv in open_valves:
+                continue
+            if time+1+cost > 26:
+                continue
+            q.append((vv, time+1+cost, pressure, open_valves))
+
+    ignore = {start}
+    max_released = 0
+    for s1, p1 in released.items():
+        for s2, p2 in released.items():
+            if not s1.intersection(s2) != ignore:
+                max_released = max(max_released, p1+p2)
+    return max_released
 
 def part1(graph):
-    graph = build_graph(graph)
-    #print(graph.to_dot())
-    simplify_graph(graph)
-    print(graph.to_dot())
+    graph = to_graph(graph)
+    graph = smaller_graph(graph)
+    table = generate_distances_table(graph)
+
+    return find_best(graph.vertex('AA'), table)
+
+def part2(graph):
+    graph = to_graph(graph)
+    graph = smaller_graph(graph)
+
+    table = generate_distances_table(graph)
+
+    return find_best2(graph, graph.vertex('AA'), table)
 
 
-
-part1(read_input('input'))
+print('Part 1:', part1(read_input('input')))
+print('Part 2:', part2(read_input('input')))
